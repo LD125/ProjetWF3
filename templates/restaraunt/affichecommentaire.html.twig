@@ -1,0 +1,31 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h2>Voici les commentaires pour ce restaurant :</h2>
+    <br>
+    <div class="row">
+        <div class="col-sm-12">
+    {% for commentaire in commentaires %}  
+        <p><b>
+                {{ commentaire.datecomment }}
+            {{commentaire.membre|capitalize}}
+            a écrit :
+            </b>
+        </p>
+        <p><i>"
+                {{commentaire.commentaire}}
+                "</i></p>
+        <p>
+            Note :
+            {{commentaire.note}}  <span class="glyphicon glyphicon-star" aria-hidden="true"></span> 
+        </p>
+        <hr>
+       {% endfor %}
+        </div>
+</div>
+    <div class="row">
+        <div class="col-sm-12">
+        <a href="{{ path('app_restaraunt_index') }}" class="btn btn-lg btn-success">Retour aux restaurants</a>
+        </div>
+    </div>
+    {% endblock %}

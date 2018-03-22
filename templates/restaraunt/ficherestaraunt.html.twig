@@ -1,0 +1,68 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h1>{{ restaraunt.nom}}</h1>
+        {% if restaraunt.image is not null %}
+            <div class="row">
+                <div class="thumbnail col-sm-8 col-sm-offset-2">
+                    <img src="{{ asset('upload/' ~ restaraunt.image) }}">
+                </div>
+            </div>
+            {% endif %}
+            <div class="row">
+                <div class="well col-sm-6 col-sm-offset-3">
+                    <p>{{ restaraunt.description }}</p>
+                    <p>Note:
+                        {{ restaraunt.note }}
+                         <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    </p>
+                </div>
+                </div>
+            <div class="row">
+                <div class="well col-sm-6 col-sm-offset-3">
+                    <p>{{ restaraunt.ville|capitalize}},
+                       {{ restaraunt.adresse|capitalize}}
+                       {{ restaraunt.cdp}}
+                    </p>
+                    <p>
+                       Numéro de téléphone :
+                       <b>{{ restaraunt.telephone}}</b>
+                    </p>
+                </div>
+                </div>
+            
+            <div class="row articlecontent">
+            <div class="col-md-8 col-sm-offset-2">
+                <p>{{ restaraunt.article }}</p>
+            </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-8 col-sm-offset-2">
+                <iframe src="https://maps.google.it/maps?q={{restaraunt.adresse}}&output=embed" width="100%" height="300" frameborder="0" style="border:0"></iframe>
+                </div>
+            </div>
+            <h2>Voici les derniers commentaires pour ce restaurant :</h2>
+                {% for commentaire in commentaires %}  
+                    <p><b>Par
+                        {{commentaire.membre|capitalize}},
+                        </b>
+                    </p>
+                    <p>
+                        le {{ commentaire.datecomment }} :
+                    </p>
+                    <p><i>"
+                            {{commentaire.commentaire}}
+                            "</i></p>
+                    <p>
+                        Note :
+                        {{ commentaire.notecomment }}
+                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    </p>
+                    <hr>
+                   {% endfor %}
+            
+                <div class="row">
+        <a href="{{ path('app_restaraunt_index') }}" class="btn btn-lg btn-success">Retour aux restaurants</a>
+                </div>
+{% endblock %}

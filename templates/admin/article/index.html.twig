@@ -1,0 +1,41 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block content %}
+    <h1>Gestion des articles</h1>
+    <p>
+        <a href="{{ path('app_admin_article_edit') }}" class="btn btn-lg btn-success">Ajouter un article</a>
+    </p>
+    <div style="overflow-x:auto;">
+    <table class="table">
+        <tr>
+            <th>Id</th>
+            <th>Titre</th>
+            <th>Contenu</th> 
+            <th>Description</th>
+            <th>Image</th>
+            <th>Restaurant</th>
+            <th width="200px">Action</th>
+        </tr>
+        {% for article in articles %}         
+              <tr>
+                  <td><p>#{{ article.id}}</p></td>
+            <td><p>{{ article.title|capitalize}}</p></td>
+            <td><p>{{ article.content|capitalize|slice('0',200)}}...</p></td>
+            <td><p>{{ article.description|capitalize|slice('0',200)}}...</p></td>
+            <td>
+                    <img src="{{ asset('upload/' ~ article.image1) }}"  class="img-thumbnail" width="300px">
+                  <img src="{{ asset('upload/' ~ article.image2) }}" class="img-thumbnail" width="300px">
+                  <img src="{{ asset('upload/' ~ article.image3) }}" class="img-thumbnail" width="300px">
+               
+            </td>
+          <td><p>{{ article.restaraunt.nom|capitalize}}</p></td>
+         
+                            
+            <td><a href="{{ path('app_admin_article_edit', {id: article.id}) }}" class="btn btn-success">Modifier</a>
+                <a href="{{ path('app_admin_article_delete', {id: article.id}) }}" class="btn btn-danger">Supprimer</a></td>           
+        {% endfor %}
+    </table>
+    </div>
+    
+{% endblock %}

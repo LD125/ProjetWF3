@@ -1,0 +1,23 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <a href="{{ path('app_commentaire_ajout') }}" class="btn btn-danger">Ajouter un commentaire</a>
+    <div class="col-sm-12">
+     {% for commentaire  in commentaires %}
+         <div class="col-sm-8">
+             <p>{{commentaire.id}}</p>
+             <p>{{commentaire.restaraunt.nom}}</p>
+             <p>{{commentaire.commentaire}}</p>
+             <p>{{commentaire.membre}}</p>
+             <p>{{commentaire.notecomment }} <span class="glyphicon glyphicon-star" aria-hidden="true"></span></p>
+          <hr>     
+         </div>
+         
+                
+       {% endfor %}
+       
+
+    </div>
+     
+{% endblock %}
+{# empty Twig template #}

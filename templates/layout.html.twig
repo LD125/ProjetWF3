@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Where Can We Eat ?{% endblock %}
+
+{% block stylesheets %}
+    <link href="https://fonts.googleapis.com/css?family=Lobster|Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('style/style.css') }}">
+{% endblock %}
+ 
+{% block javascripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>    
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block body %}
+   
+<!-- /////////////////////////////////////////////////////NAVBAR USER ET ADMIN /////////////////////////////////////////////////////////////// -->
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    
+                    <!-- Gestion du Menu Burger : Version Mobile -->
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- Le logo -->
+                    <a class="navbar-brand brandimage logo" href="{{ path('app_index_index')}}">
+                    <img src="{{ asset('style/img/logo.png')}}">
+                    </a>
+                </div> <!-- /.navbar-header -->
+
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <li><a class="buttonmenu" href="{{ path('app_admin_membre_index')}}">Gestion Membre</a></li>
+                        <li><a class="buttonmenu" href="{{ path('app_admin_article_index')}}">Gestion articles</a></li>
+                        <li><a class="buttonmenu" href="{{ path('app_admin_restaurant_index')}}">Gestion restaurant</a></li>
+                        <li><a class="buttonmenu" href="{{ path('app_admin_commentaire_index')}}">Gestion commentaire</a></li>
+                        <li><a class="buttonmenu" href="{{ path('app_admin_contact_index')}}">Gestion des Messages</a></li>  
+                        {% endif %}
+                        <li><a class="buttonmenu" href="{{ path('app_article_index') }}">Blog</a></li>
+                        <li><a class="buttonmenu" href="{{ path('app_restaraunt_index') }}">Restaurants</a></li>
+                        <li><a class="buttonmenu" href="{{ path('app_index_stats') }}">Statistiques</a></li>
+                        <li><a class="buttonmenu" href="{{ path('app_contact_index') }}">Contact</a></li>
+                        {% if(app.user is null) %}
+                            <li><a class="buttonmenu" href="{{ path('app_security_register')}}">Inscription</a></li>
+                            <li><a class="buttonmenu" href="{{ path('app_security_login')}}">Connexion</a></li>
+                        {% else %}
+                        <li><a class="buttonmenu" href="{{ path('app_security_logout')}}">Déconnexion</a></li>
+                        {% endif %}
+                    </ul>
+                </div> <!-- /#container -->
+            </div> <!-- /.container -->            
+        </nav>
+    
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+   <div class="container">
+        {% for type, messages in app.session.flashbag.all %}
+            {% for message in messages %}
+                {# pour le class alert-danger du bootstrap#}
+                {% if type =='error'%}
+                    {% set type ='danger' %}
+                {%endif%}
+                <div class="alert alert-{{ type }}">
+                    {{ message|raw}}
+                </div>   
+                
+            {%endfor%}
+     
+       {% endfor %}
+    {% block content %}{% endblock%} 
+
+    </div>
+    
+    <div id="copy" class="navbar navbar-fixed-bottom">&copy; Copyright 2018 - Where Can We Eat !! - Tous droits réservés</div>  
+{% endblock %}
+
+

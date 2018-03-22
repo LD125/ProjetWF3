@@ -1,0 +1,56 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h1>Les restaurants</h1>
+    <div class="row">
+        <div class="col-sm-10">
+            <h2>Spécialités </h2>
+            <ul class="menuspecialite">
+                {% for option in options %}  
+                   <li><p><a class="btn btn-lg btn-default" href="{{path('app_restaraunt_specialite_options',{specialite:option.specialite})}}"> {{option.specialite}} </a></p></li>
+                {% endfor %}
+            </ul>
+        </div>
+     </div>
+     <div class="row">           
+        <div class="col-sm-10">
+            <h2> Les Villes </h2>
+            <ul class="menuspecialite">
+                {% for ville in villes %}
+                    <li><p><a class="btn btn-lg btn-default" href="{{path('app_restaraunt_choisir_ville',{ville:ville.ville})}}"> {{ville.ville}} </a></p></li>
+                {% endfor %}
+            </ul>
+            </div>
+           </div>    
+            <hr> 
+    <div class="row">   
+        {% for restaraunt in restaraunts %}
+            <div class="col-sm-4">
+                <h2 class="text-center">{{restaraunt.nom}}</h2>
+                     {% if restaraunt.image is not null %}
+                         <p>
+                        <a href="{{ path('app_restaraunt_ficherestaraunt', {id: restaraunt.id})}}">
+                            <img class="img-thumbnail restfigcaption" src="{{ asset('upload/' ~ restaraunt.image)}}">
+                        </a>
+                         </p>
+                    {% endif %}
+
+                    <p class="text-center">Note:
+                        {{restaraunt.note}}
+                         <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    </p>
+                    <p>{{ restaraunt.description }}</p>
+                    <p class="text-center">
+                        <a class="btn btn-default" href="{{path('app_commentaire_ajout', {id:restaraunt.id})}}"> Ajouter Un Commentaire</a>
+                        </p>
+                        <p class="text-center">
+                        <a class="btn btn-default" href="{{path('app_restaraunt_affichecommentaire',{id:restaraunt.id})}}">Afficher les commentaires</a>
+                    </p>
+            </div>
+
+
+            {% endfor %}
+    </div>     
+    <a class="btn btn-lg btn-success" href="{{ path('app_article_index') }}">Aller au Blog</a> 
+    
+    {% endblock %}

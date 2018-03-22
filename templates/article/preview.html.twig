@@ -1,0 +1,30 @@
+<article>
+    <div class="row">  
+        
+        <h3>
+            <a href="{{ path('app_article_fichearticle', {id: article.id})}}">{{ article.title }}</a>
+        </h3>
+        
+        <div class="col-sm-2 text-center">
+            <div>{% if article.image2 is not null %}
+                <a href="{{ path('app_article_fichearticle', {id: article.id})}}">
+                     <img src="{{ asset('upload/' ~ article.image2)}}" class="img-thumbnail">
+                     </a>
+                 {% endif %}
+            </div>
+        </div>  
+            
+        <div class="col-sm-8">
+            <div>
+                <p>
+                    {{ article.description|capitalize}}
+                </p>
+                <p class="text-right"><i>Le
+                        {{ article.datearticle|date('d-m-Y')}}</i>
+                </p>
+            </div>  
+        </div>
+            
+    </div>
+    <hr>        
+</article>

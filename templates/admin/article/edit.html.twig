@@ -1,0 +1,24 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block content %}
+    <h1>Edition articles</h1>
+    {{ form_start(form) }}{# ouvre la balise form #}
+    {{ form_row(form.title)}}
+     {{ form_row(form.content)}}
+     {{ form_row(form.description)}}
+     {{ form_row(form.restaraunt) }}
+     {{ form_row(form.image1) }}
+     {{ form_row(form.image2) }}
+     {{ form_row(form.image3) }}
+     
+
+     <div class="form-btn-group">
+         <button type="submit" class="btn btn-lg btn-primary">Enregistrer</button>
+         <a href="{{ path('app_admin_article_index') }}" class="btn btn-lg  btn-danger">Retour</a>
+     </div>
+     
+     {{ form_end(form) }}{# ferme la balise form #}
+    
+{% endblock %}
+

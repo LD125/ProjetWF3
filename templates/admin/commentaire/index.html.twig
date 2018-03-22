@@ -1,0 +1,32 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+<h1>Gestion commentaires</h1>
+    <div style="overflow-x:auto;">
+        <table class="table ">
+        <tr>
+            <th>Id</th>
+            <th>Restaurant</th>
+            <th>Membre</th> 
+            <th>Commentaire</th>
+            <th>Note</th>
+           
+            <th width="200px"></th>
+        </tr>
+        
+        {% for commentaire in commentaires %}
+            <tr>
+                <td><p>#{{ commentaire.id}}</p></td>
+            <td><p>{{ commentaire.restaraunt.nom}}</p></td>
+            <td><p>{{ commentaire.membre|capitalize}}</p></td>
+            <td><p>{{ commentaire.commentaire|capitalize}}</p></td>
+            <td><p>{{ commentaire.notecomment}}<span class="glyphicon glyphicon-star fa-1x" aria-hidden="true"></span></td>
+                   
+            
+            <td><a href="{{path('app_admin_commentaire_delete', {id:commentaire.id})}}" class="btn btn-lg btn-danger">Supprimer</a></td>
+            </tr>
+        {%endfor%}    
+        
+    </table> 
+    </div>
+{% endblock %}

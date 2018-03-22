@@ -1,0 +1,115 @@
+.navbar {
+    height: 7.5% 
+}
+.navbar-collapse{
+   background-color: rgb(248, 248, 248); 
+} 
+.buttonmenu {    
+    line-height: 41px !important;
+    transition: 0.3s;
+    background-color: rgb(248, 248, 248);
+}
+.buttonmenu:hover {
+   background-color: rgb(145, 42, 33) !important; 
+   color: #fff !important;
+}
+
+body {
+    background-image: url('img/white-wood.jpg');
+    font-family: 'Lobster', cursive;
+    /* font-family: 'Oswald', sans-serif; */
+    font-size: 1.7rem;
+}
+p {
+    font-family: 'Raleway', sans-serif;
+}
+
+/*.container {
+    border-left : 20px solid black;
+    border-right : 20px solid black;
+    background-color :rgba(255, 255, 255, 1);
+    -webkit-box-shadow: 0px 0px 8px 1px rgba(0,0,0,0.44);
+-moz-box-shadow: 0px 0px 8px 1px rgba(0,0,0,0.44);
+box-shadow: 0px 0px 8px 1px rgba(0,0,0,0.44);
+    margin-bottom: 1%;
+    padding-top : 20px;
+    padding-bottom : 40px;
+    min-height: 100vh;
+    margin-bottom: 5%;
+    margin-top: 5%;
+}*/
+.container{
+    min-height: 100vh;
+    box-shadow:0px 0px 5px 1px rgba(0, 0, 0, .5);
+    margin-bottom: 5%;
+    margin-top: 5%;
+    background-color :rgba(255, 255, 255, 0.9);
+     padding-top : 20px;
+    padding-bottom : 40px;
+}
+
+.restfigcaption{
+    
+}
+.restfigcaption:hover {
+    opacity: 0.5;
+}
+h1 {
+    text-align: center;
+    text-decoration: underline;
+}
+h3 {
+    text-decoration: underline;
+    color : rgb(145, 42, 33);
+}
+.articlecontent {
+    font-size: 1.8rem;
+    padding: 1%;
+}
+.linkrestaraunt {
+    text-align: center;
+    font-size: 5rem;
+}
+
+.brandimage {
+   
+    background-repeat: no-repeat;
+    background-size: 10rem;
+}
+.logo{
+    padding: 0;
+}
+.container-fluid a{
+    font-size: 2rem;
+}
+span {
+    color : rgb(255,215,0)
+}
+
+#copy {
+    margin-top:10px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 80%;
+    background: rgb(248, 248, 248);
+}
+.menuspecialite {
+    list-style-type: none;   
+    margin: 0 auto;
+    padding: 0;
+}
+.menuspecialite li {
+    float: left;
+    margin: 0 0.5%;
+    
+}
+.row {
+    padding: 1%
+}
+a {
+    color : rgb(145, 42, 33);
+}
+.contact{
+    font-family: 'Oswald', sans-serif; 
+}

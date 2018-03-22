@@ -1,0 +1,48 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+<h1>Gestion Restaurant</h1>
+ <p>
+        <a href="{{ path('app_admin_restaurant_edit')}}" class="btn btn-lg btn-success">Ajouter un resto </a>
+    </p>
+    <div style="overflow-x:auto;">
+        <table class="table ">
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Ville</th> 
+            <th>Adresse</th>
+            <th>Code postal</th>
+            <th>Note</th>
+            <th>specialite</th>
+            <th>Image</th>
+            <th>Description</th>
+           
+            <th width="200px"></th>
+        </tr>
+        
+        {% for restaraunt in restaraunts %}
+            <tr>
+            <td><p>#{{ restaraunt.id}}</p></td>
+            <td><p>{{ restaraunt.nom}}</p></td>
+            <td><p>{{ restaraunt.ville}}</p></td>
+            <td><p>{{ restaraunt.adresse}}</p></td>
+            <td><p>{{ restaraunt.cdp}}</p></td>
+            <td>{{ restaraunt.note}}  <span class="glyphicon glyphicon-star" aria-hidden="true"></span></td>
+            <td><p>{{ restaraunt.specialite}}</p></td>
+            <td>{% if restaraunt.image is not null %}
+                    <img src="{{ asset('upload/' ~ restaraunt.image)}}" width="150px">
+                {% endif %}
+            </td>
+            <td><p>{{ restaraunt.description}}</p></td>
+            
+            
+            
+            <td><a href="{{path('app_admin_restaurant_edit', {id:restaraunt.id})}}" class="btn btn-success">Modifier</a>
+            <a href="{{path('app_admin_restaurant_delete', {id:restaraunt.id})}}" class="btn btn-danger">supprimer</a></td>
+            </tr>
+        {%endfor%}    
+        
+    </table> 
+        </div>
+{% endblock %}

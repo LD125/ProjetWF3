@@ -1,0 +1,81 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+<h1>Accueil</h1> 
+    
+        <h2 class="text-center">Bienvenue sur Where Can We Eat !</h2>
+        <div class="row slider">
+            <div class="col-sm-8 col-sm-offset-2"> 
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
+
+ 
+     <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item active">
+      <img src="{{ asset('style/img/slide2.jpg')}}">
+    </div>
+
+    <div class="item">
+      <img src="{{ asset('style/img/slide1.jpg')}}">
+    </div>
+
+    <div class="item">
+      <img src="{{ asset('style/img/slide3.jpg')}}">
+    </div>
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+  </div>
+    </div>
+        
+    
+
+    <br>
+   <div class="row">
+    <h3>Les derniers restaurants :</h3>
+        {% for restaraunt in restaraunts %}
+            <div class="col-sm-4 col-offset-1">
+                <h4 class="text-center">{{ restaraunt.nom }}</h4>
+            {% if restaraunt.image is not null %}
+                <a href="{{ path('app_restaraunt_ficherestaraunt', {id: restaraunt.id})}}">
+                    <img src="{{ asset('upload/' ~ restaraunt.image)}}" class="img-thumbnail restfigcaption">
+                </a>
+            {% endif %}
+            </div>
+        {% endfor%}
+   </div>
+<div class="row">
+    <h3>Les derniers Articles :</h3>
+        {% for article in articles %}
+            <div class="col-sm-4 col-offset-1">
+                <h4 class="text-center"><a href="{{ path('app_article_fichearticle', {id: article.id})}}">{{ article.title}}</a></h4>
+            {% if article.image1 is not null %}
+                <a href="{{ path('app_article_fichearticle', {id: article.id})}}">
+                    <img src="{{ asset('upload/' ~ article.image1)}}" class="img-thumbnail restfigcaption">
+                 </a>
+            {% endif %}
+            </div>
+        {% endfor%}
+        </div>
+    {% endblock %}
+{% block javascripts %}
+    {# reprend le contenu du bloc javascript du layout #}
+    {{ parent() }}
+    <script>console.log('Mon js')</script>
+
+{% endblock %}

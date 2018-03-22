@@ -1,0 +1,31 @@
+{% extends 'layout.html.twig' %}
+{% block content %}
+<h1>Gestion Des Membres</h1>
+    <div style="overflow-x:auto;">
+      <table class="table ">
+        <tr>
+            <th>Id</th>
+            <th>Pseudo</th>
+            <th>Email</th> 
+            <th>Role</th>
+       <th width="200px"></th>
+        </tr>
+        
+        {% for membre in membres %}
+            <tr>
+            <td><p>#{{ membre.idmembre}}</p></td>
+            <td><p>{{ membre.pseudo|capitalize}}</p></td>
+            <td><p>{{ membre.email}}</p></td>
+            <td><p>{{ membre.role}}</p></td>
+                
+                       
+            
+            <td><a href="{{ path('app_admin_membre_edit', {id_membre: membre.idmembre}) }}" class="btn btn-success">Modifier</a>
+            <a href="{{ path('app_admin_membre_delete', {id_membre: membre.idmembre}) }}" class="btn btn-danger">supprimer</a></td>
+            </tr>
+        {%endfor%}    
+        
+    </table> 
+        
+    </div>
+{% endblock %}

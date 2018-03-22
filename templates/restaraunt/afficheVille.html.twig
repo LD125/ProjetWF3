@@ -1,0 +1,35 @@
+{% extends 'layout.html.twig' %}
+{% block content %}
+    <h1>Les restaurants de {{ villes[0]['ville']}}</h1>
+    <div class="row">
+    {% for ville in villes %}
+        <div class="col-sm-4">
+            <h2 class="text-center">{{ ville.nom }}</h2>
+                 {% if ville.image is not null %}
+                     <p>
+                         <a href="{{ path('app_restaraunt_ficherestaraunt', {id:ville.id})}}">
+                        <img class="img-thumbnail restfigcaption" src="{{ asset('upload/' ~ ville.image)}}">
+                    </a>
+                     </p>
+                {% endif %}
+                
+                <p class="text-center">Note:
+                    {{ ville.note }}
+                     <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                </p>
+                <p>{{ ville.description }}</p>
+                <p class="text-center">
+                    <a class="btn btn-default" href="{{ path('app_commentaire_ajout', {id:ville.id}) }}"> Ajouter Un Commentaire</a>
+                </p>
+                <p class="text-center">
+                    <a class="btn btn-default" href="{{ path('app_restaraunt_affichecommentaire',{id:ville.id}) }}">Afficher les commentaires</a>
+                </p>
+        </div>
+        
+        
+        {% endfor %}
+    </div>
+    <div class="row">
+    <a href="{{ path('app_restaraunt_index') }}" class="btn btn-lg btn-success">Retour aux restaurants</a>
+    </div>
+    {% endblock %}

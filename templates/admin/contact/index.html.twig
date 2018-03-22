@@ -1,0 +1,32 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+<h1>Gestion des messages</h1>
+    <div style="overflow-x:auto;">
+        <table class="table">
+        <tr>
+            <th>Id</th>
+            <th>Date</th>
+            <th>Email</th> 
+            <th>Objet</th>
+            <th>Message</th>
+           
+            <th width="200px"></th>
+        </tr>
+        <br>
+        {% for message in messages %}
+            <tr>
+            <td><p>#{{ message.id}}</p></td>
+            <td><p>{{ message.date|date('d-m-Y') }}</p></td>
+            <td><p>{{ message.email}}</p></td>
+            <td><p>{{ message.objet|capitalize}}</p></td>
+            <td><p>{{ message.message|capitalize}}</p></td>
+                   
+            
+            <td><a href="{{path('app_admin_contact_delete', {id: message.id})}}" class="btn btn-lg btn-danger">Supprimer</a></td>
+            </tr>
+        {%endfor%}    
+        
+    </table> 
+    </div>
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends 'layout.html.twig' %}
+
+ 
+
+{% block content %}
+    
+<div class="row">  
+    <h1> Consulter les statistiques de notre site :</h1>
+    <br>
+    
+    <h3> Les restaraunts les mieux notes :</h3>  
+    {% for restaraunt in mielleuresRestaraunts %} 
+        <p>
+            {{restaraunt.nom|capitalize }} :
+        
+           <b>{{restaraunt.average_note}}</b> 
+            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+        </p>
+    {% endfor %}
+
+    
+    <h3> Les restaraunts avec les pires notes :</h3>
+    {% for restaraunt in piresRestaraunts %}
+        <p>
+               {{restaraunt.nom|capitalize}}:
+            <b>{{restaraunt.average_note}}</b>
+             <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+        </p>
+    {% endfor %}
+    
+    
+    <h3> Les restaraunts avec le plus de commentaires :</h3>
+
+        {% for commentaire in trieRestaraunts %}
+            <p>
+                {{commentaire.nom|capitalize}}:
+                <b>{{commentaire.amount}}</b>
+            </p>
+           {% endfor %} 
+    
+    <h3> Les restaraunts récemment ajouté au blog :</h3>
+     {% for restaraunt in restarauntsRecents %}
+         <p>
+             <i>{{restaraunt.nom|capitalize}}</i>
+         </p>
+       {% endfor %}
+       
+       
+       <h3> Les membres les plus actifs :</h3>
+       {% for membre in membresLesPlusActifs %}
+           <p>Pseudo:
+               {{membre.pseudo|capitalize}}
+           </p>
+           <p>
+               Nombre de commentaires : 
+               <b>{{membre.amount}}</b>
+           </p>
+       {% endfor %}
+
+       
+       <h3> Voir les commentaires récents :</h3> 
+
+           {% for commentaire in commentairesRecents %}
+               <p><b>Par
+                       {{commentaire.membre|capitalize}}
+                       :</b>
+               </p>
+               <p>A propos de :
+                   {{ commentaire.restaraunt|capitalize }}
+               </p>
+               <p>{{commentaire.commentaire|capitalize}}</p>
+               <hr>
+           {% endfor %}    
+</div>
+<div class="row">
+     <a class="btn btn-lg btn-success" href="{{ path('app_index_index')}}">Retour à l'acceuil</a>
+</div>
+           
+
+    {#
+      Les Restaraunts avec les pires notes : {{  }}
+    
+       <a href="{{ path('app_index_piresRestaraunts' }}"
+                       class="btn btn-primary">
+                   Voir Les Restaraunts avec les pires notes
+      </a>
+       
+      <a href="{{ path('app_index_restarauntsCommentaire' }}"
+                       class="btn btn-primary">
+                   Voir Les Restaraunts avec le plus de commentaires
+      </a>
+                       
+       <a href="{{ path('app_index_nombreCommentaire' }}"
+           class="btn btn-primary">
+                 Voir les membres les plus actifs
+      </a>
+      #}  
+        
+{% endblock %}

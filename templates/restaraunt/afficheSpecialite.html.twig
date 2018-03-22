@@ -1,0 +1,35 @@
+{% extends 'layout.html.twig' %}
+{% block content %}
+    <h1>Specialité {{ choix[0]['specialite']}}</h1>
+    <div class="row">
+    {% for choixi in choix %}
+        <div class="col-sm-4">
+            <h2 class="text-center">{{choixi.nom}}</h2>
+                 {% if choixi.image is not null %}
+                     <p>
+                         <a href="{{ path('app_restaraunt_ficherestaraunt', {id:choixi.id})}}">
+                        <img class="img-thumbnail restfigcaption" src="{{ asset('upload/' ~ choixi.image)}}">
+                    </a>
+                     </p>
+                {% endif %}
+                
+                <p class="text-center">Note:
+                    {{choixi.note}}
+                     <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                </p>
+                <p>{{ choixi.description }}</p>
+                <p class="text-center">
+                    <a class="btn btn-default" href="{{path('app_commentaire_ajout', {id:choixi.id})}}"> Ajouter Un Commentaire</a>
+                    </p>
+                    <p class="text-center">
+                    <a class="btn btn-default" href="{{path('app_restaraunt_affichecommentaire',{id:choixi.id})}}">Afficher les commentaires</a>
+                </p>
+        </div>
+        
+        
+        {% endfor %}
+    </div>
+    <div class="row">
+    <a href="{{ path('app_restaraunt_index') }}" class="btn btn-lg btn-success">Retour aux restaurants</a>
+    </div>
+    {% endblock %}

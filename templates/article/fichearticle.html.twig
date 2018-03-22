@@ -1,0 +1,41 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block content %}
+    <h1>{{ article.title }}</h1>
+        {% if article.image2 is not null %}
+            <div class="row">
+                <div class="thumbnail col-sm-8 col-sm-offset-2">
+                    <img src="{{ asset('upload/' ~ article.image2) }}">
+                </div>
+            </div>
+            {% endif %}
+            <div class="row">
+                <div class="well col-sm-6 col-sm-offset-3">
+                    <p>{{ article.description|capitalize }}</p></div>
+                </div>
+        {% if article.image1 is not null %}
+            <div class="row">
+                <div class="thumbnail col-sm-8 col-sm-offset-2">
+                    <img src="{{ asset('upload/' ~ article.image1) }}">
+                </div>
+            </div>
+            {% endif %}
+
+            <div class="row articlecontent">
+            <div class="col-md-8 col-sm-offset-2">
+                <p>{{ article.content|capitalize}}.</p>
+            </div>
+            </div>
+            {% if article.image3 is not null %}
+            <div class="row">
+                <div class="thumbnail col-sm-8 col-sm-offset-2">
+                    <img src="{{ asset('upload/' ~ article.image3) }}">
+                </div>
+            </div>
+            {% endif %}
+            <div class="linkrestaraunt"><a href="{{ path('app_restaraunt_ficherestaraunt', {id: article.restaraunt.id}) }}">Les Infos du restaurant</a></div>
+        
+        <a href="{{ path('app_article_index') }}" class="btn btn-lg btn-success">Retour au blog</a>
+{% endblock %}
+
